@@ -1,5 +1,9 @@
 package com.training.core.java.lab.day2and3;
-
+/**
+ * 
+ * @author neha15376
+ * Calculate Total and Percentage. If percentage is greater than 50 then display “PASS” else display “FAIL”
+ */
 public class Question2_2 {
 	
 	int studentId;

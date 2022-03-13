@@ -1,5 +1,10 @@
 package com.training.core.java.lab.day1;
-
+/**
+ * 
+ * @author neha15376
+ *accepting two numbers, divide the first number by 
+  second and display their quotient and remainder
+ */
 public class Question1 {
 	
 	public void divideNos(int num1, int num2) {

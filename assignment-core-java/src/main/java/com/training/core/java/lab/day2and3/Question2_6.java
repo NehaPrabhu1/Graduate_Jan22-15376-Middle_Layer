@@ -1,5 +1,9 @@
 package com.training.core.java.lab.day2and3;
-
+/**
+ * 
+ * @author neha15376
+ * accepting three numbers and display the lowest number out of three numbers
+ */
 public class Question2_6 {
 	
 	public static int getLowestNumber(int a, int b, int c) {

@@ -1,5 +1,9 @@
 package com.training.core.java.lab.day2and3;
-
+/**
+ * 
+ * @author neha15376
+ * accepting three numbers and display the lowest number out of three numbers
+ */
 public class Question2_1 {
 	public int smallestNumber(int n1, int n2, int n3) {
 		if(n1 < n2) {

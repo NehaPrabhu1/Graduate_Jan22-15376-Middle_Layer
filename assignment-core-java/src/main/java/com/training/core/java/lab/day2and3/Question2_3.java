@@ -1,5 +1,9 @@
 package com.training.core.java.lab.day2and3;
-
+/**
+ * 
+ * @author neha15376
+ * to get grade of 3 subject marks.
+ */
 public class Question2_3 {
 	int studentId;
 	String studentName;

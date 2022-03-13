@@ -1,5 +1,9 @@
 package com.training.core.java.lab.day2and3;
-
+/**
+ * 
+ * @author neha15376
+ * to get lucky number of given number
+ */
 public class Question2_4 {
 	
 	public static int getLuckyNumber(int n) {

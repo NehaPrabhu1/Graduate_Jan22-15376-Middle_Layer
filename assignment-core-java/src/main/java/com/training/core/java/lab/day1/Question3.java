@@ -1,5 +1,9 @@
 package com.training.core.java.lab.day1;
-
+/**
+ * 
+ * @author neha15376
+ * calculating the area of rectangle and square separately
+ */
 public class Question3 {
 	
 	public void area(double l, double b) {

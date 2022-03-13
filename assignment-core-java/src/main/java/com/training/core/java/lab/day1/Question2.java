@@ -1,5 +1,12 @@
 package com.training.core.java.lab.day1;
 
+/**
+ * 
+ * @author neha15376
+ * accepting distance in kilometers, convert it into miles and 
+   display the result.
+ */
+
 public class Question2 {
 	
 	public void kilometersToMiles(double km) {
