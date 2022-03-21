@@ -1,5 +1,8 @@
 package com.merchandise.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Supplier extends Merchandise {
 	
 	private double creditBalance;
@@ -21,6 +24,22 @@ public class Supplier extends Merchandise {
 	
 	public String toString() {
 		return "["+ super.toString()+" : "+this.creditBalance+" : "+this.drivingLicenseNumber+"]";
+	}
+	
+	public String[] validate() {
+		String[] errors = super.validate();
+		Set<String> h = new HashSet<>();
+		for(String element: errors) {
+			h.add(element);
+		}
+		if(creditBalance > 175000) {
+			h.add("Credit Balance should not be more than 175000");
+		}
+		if(drivingLicenseNumber == null) {
+			h.add("Driving license number should not be null.");
+		}
+		h.toArray(errors);
+		return errors;
 	}
 
 	@Override

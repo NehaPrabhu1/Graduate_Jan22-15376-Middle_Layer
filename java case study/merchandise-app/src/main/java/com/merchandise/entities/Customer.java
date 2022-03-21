@@ -1,5 +1,7 @@
 package com.merchandise.entities;
 
+import java.util.*;
+
 public class Customer extends Merchandise {
 	
 	private double creditLimit;
@@ -20,6 +22,22 @@ public class Customer extends Merchandise {
 	}
 	public String getEmail() {
 		return email;
+	}
+	
+	public String[] validate() {
+		String[] errors = super.validate();
+		Set<String> h = new HashSet<>();
+		for(String element: errors) {
+			h.add(element);
+		}
+		if(creditLimit > 50000) {
+			h.add("Credit Limit should not be more than 50000");
+		}
+		if(phoneNo%10000000000L == 0) {
+			h.add("Phone No. should have atleast 10 digits");
+		}
+		h.toArray(errors);
+		return errors;
 	}
 	
 	public String toString() {

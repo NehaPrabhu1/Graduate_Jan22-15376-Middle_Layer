@@ -1,6 +1,9 @@
 package com.merchandise.entities;
 
+import java.util.*;
+
 public class Merchandise {
+	private static int generateId = 0;
 	
 	private int partnerId;
 	private String partnerName;
@@ -39,6 +42,27 @@ public class Merchandise {
 	}
 	
 	//validate
+	public String[] validate() {
+		HashSet<String> h = new HashSet<String>();
+		if(partnerId <=0) {
+			h.add("Partner Id cannot be negative");
+		}
+		if(partnerName == null) {
+			h.add("Partner Name cannot be null");
+		}
+		if(partnerName.length() < 5) {
+			h.add("Partner Name should have atleast 5 characters");
+		}
+		if(city.length() < 3) {
+			h.add("City should have atleast 3 characters");
+		}
+		if(state.length() < 3) {
+			h.add("State should have atleast 3 characters");
+		}
+		String[] errors = new String[10];
+		h.toArray(errors);
+		return errors;
+	}
 	
 	//equals
 	@Override

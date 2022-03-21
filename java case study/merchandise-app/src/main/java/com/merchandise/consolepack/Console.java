@@ -54,12 +54,13 @@ public class Console {
 		Scanner sc1 = new Scanner(System.in);
 		System.out.print("Enter partner Id: ");
 		int partnerId = sc1.nextInt();
+		sc1.nextLine();
 		System.out.print("Enter partner Name: ");
-		String partnerName = sc1.next();
+		String partnerName = sc1.nextLine();
 		System.out.print("Enter city: ");
-		String city = sc1.next();
+		String city = sc1.nextLine();
 		System.out.print("Enter state: ");
-		String state = sc1.next();
+		String state = sc1.nextLine();
 		System.out.print("Enter credit limit: ");
 		double creditLimit = sc1.nextDouble();
 		System.out.print("Enter phone number: ");
@@ -68,30 +69,57 @@ public class Console {
 		String email = sc1.next();
 		Customer c = new Customer(partnerId, partnerName, city, state, creditLimit, phoneNo, email);
 		//call validate=> if validateArray => empty => add object else display array
-		service.saveCustomerDetails(c);
-		System.out.println(service.getAllCustomers());
-		System.out.println("Customer added successfully");
+		String[] validationErrors = c.validate();
+		int errCount = 0;
+		for(String error:validationErrors) {
+			if(error != null) {
+				errCount++;
+				System.err.println(error);
+			}
+		}
+		if(errCount == 0) {
+			service.saveCustomerDetails(c);
+			System.out.println(service.getAllCustomers());
+			System.out.println("Customer added successfully");
+		}
+		else {
+			System.out.println("Customer cannot be added.");
+		}
 	}
 	
 	public static void createSupplier() {
 		Scanner sc2 = new Scanner(System.in);
 		System.out.print("Enter partner Id: ");
 		int partnerId = sc2.nextInt();
+		sc2.nextLine();
 		System.out.print("Enter partner Name: ");
-		String partnerName = sc2.next();
+		String partnerName = sc2.nextLine();
 		System.out.print("Enter city: ");
-		String city = sc2.next();
+		String city = sc2.nextLine();
 		System.out.print("Enter state: ");
-		String state = sc2.next();
+		String state = sc2.nextLine();
 		System.out.print("Enter credit balance: ");
 		double creditBalance = sc2.nextDouble();
 		System.out.print("Enter driving License Number:");
 		String drivingLicenseNumber = sc2.next();
 		Supplier s = new Supplier(partnerId, partnerName, city, state, creditBalance, drivingLicenseNumber);
 		//call validate=> if validateArray => empty => add object else display array
-		service.saveSupplierDetails(s);
-		System.out.println(service.getAllSuppliers());
-		System.out.println("Supplier added successfully");
+		String[] validationErrors = s.validate();
+		int errCount = 0;
+		for(String error:validationErrors) {
+			if(error != null) {
+				errCount++;
+				System.err.println(error);
+			}
+		}
+		if(errCount == 0) {
+			service.saveSupplierDetails(s);
+			System.out.println(service.getAllSuppliers());
+			System.out.println("Supplier added successfully");
+		}
+		else {
+			System.out.println("Supplier cannot be added.");
+		}
 	}
 
 }
