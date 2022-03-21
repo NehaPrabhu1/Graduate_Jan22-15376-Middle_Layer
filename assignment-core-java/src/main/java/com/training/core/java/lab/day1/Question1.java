@@ -21,11 +21,10 @@ public class Question1 {
 		System.out.println("");
 	}
 	
-	public static void main( String[] args )
-    {
+	public static void main( String[] args ){
 		Question1 q1 = new Question1();
-        q1.divideNos(19, 4);
+        	q1.divideNos(19, 4);
         
-        q1.divideNos(18, 0);
+        	q1.divideNos(18, 0);
     }
  }
