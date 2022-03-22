@@ -8,38 +8,67 @@ import java.util.*;
 public class Service {
 	Customer[] customerArray = new Customer[5];
 	Supplier[] supplierArray = new Supplier[5];
-	Set<Customer> customers = new HashSet<>();
-	Set<Supplier> suppliers = new HashSet<>();
+
 	public void saveCustomerDetails(Customer cust) {
-		if(cust != null) {
+		Set<Customer> customers = new HashSet<>();
+		for (Customer customer : customerArray) {
+			if (customer != null) {
+				customers.add(customer);
+			}
+		}
+		if (cust != null) {
 			customers.add(cust);
 			customers.toArray(customerArray);
 		}
 	}
-	public List<Customer> getAllCustomers(){
-		List<Customer> allCustomer = new ArrayList<>(customers);
+
+	public List<Customer> getAllCustomers() {
+		List<Customer> allCustomer = new ArrayList<>();
+		for (Customer customer : customerArray) {
+			if (customer != null) {
+				allCustomer.add(customer);
+			}
+		}
 		return allCustomer;
 	}
-	
+
 	public Customer getCustomerById(int customerid) {
+		Set<Customer> customers = new HashSet<>();
+		for (Customer customer : customerArray) {
+			if (customer != null) {
+				customers.add(customer);
+			}
+		}
 		Iterator<Customer> c = customers.iterator();
-		while(c.hasNext()) {
+		while (c.hasNext()) {
 			Customer cust = c.next();
-			if(cust.getPartnerId() == customerid) {
+			if (cust.getPartnerId() == customerid) {
 				return cust;
 			}
 		}
 		return null;
 	}
-	
+
 	public void saveSupplierDetails(Supplier sup) {
-		if(sup != null) {
+		Set<Supplier> suppliers = new HashSet<>();
+		for (Supplier supplier : supplierArray) {
+			if (supplier != null) {
+				suppliers.add(supplier);
+			}
+		}
+		if (sup != null) {
 			suppliers.add(sup);
 			suppliers.toArray(supplierArray);
 		}
 	}
-	public List<Supplier> getAllSuppliers(){
-		List<Supplier> allSupplier = new ArrayList<>(suppliers);
+
+	public List<Supplier> getAllSuppliers() {
+		List<Supplier> allSupplier = new ArrayList<>();
+		for (Supplier supplier : supplierArray) {
+			if (supplier != null) {
+				allSupplier.add(supplier);
+			}
+		}
 		return allSupplier;
 	}
 

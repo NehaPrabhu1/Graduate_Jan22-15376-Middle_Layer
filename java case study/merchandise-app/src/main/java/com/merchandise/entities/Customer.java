@@ -5,9 +5,9 @@ import java.util.*;
 public class Customer extends Merchandise {
 	
 	private double creditLimit;
-	private long phoneNo;
+	private String phoneNo;
 	private String email;
-	public Customer(int partnerId, String partnerName, String city, String state, double creditLimit, long phoneNo,
+	public Customer(int partnerId, String partnerName, String city, String state, double creditLimit, String phoneNo,
 			String email) {
 		super(partnerId, partnerName, city, state);
 		this.creditLimit = creditLimit;
@@ -17,7 +17,7 @@ public class Customer extends Merchandise {
 	public double getCreditLimit() {
 		return creditLimit;
 	}
-	public long getPhoneNo() {
+	public String getPhoneNo() {
 		return phoneNo;
 	}
 	public String getEmail() {
@@ -33,8 +33,19 @@ public class Customer extends Merchandise {
 		if(creditLimit > 50000) {
 			h.add("Credit Limit should not be more than 50000");
 		}
-		if(phoneNo%10000000000L == 0) {
-			h.add("Phone No. should have atleast 10 digits");
+		String phoneNoPatter = "^[1-9]{1}[0-9]{9}";
+		if(phoneNo == null) {
+			h.add("Phone No. should not be null");
+		}
+		else if(!phoneNo.matches(phoneNoPatter)) {
+			h.add("Phone number should be in proper format.");
+		}
+		String emailPattern = "^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,6}";
+		if(email == null) {
+			h.add("Email cannot be null.");
+		}
+		else if(!email.matches(emailPattern)) {
+			h.add("Provide proper email format.");
 		}
 		h.toArray(errors);
 		return errors;
@@ -47,7 +58,7 @@ public class Customer extends Merchandise {
 	public int hashCode() {
 		int result = super.hashCode();
 		int creditLimitHash =(int) Double.doubleToLongBits(creditLimit);
-		int phoneNoHash = (int) phoneNo;
+		int phoneNoHash = phoneNo == null ? 0: phoneNo.hashCode();
 		int emailHashCode = email == null ? 0: email.hashCode();
 		return result + creditLimitHash + phoneNoHash + emailHashCode;
 	}

@@ -3,7 +3,7 @@ package com.merchandise.entities;
 import java.util.*;
 
 public class Merchandise {
-	private static int generateId = 0;
+	//private static int generateId = 0;
 	
 	private int partnerId;
 	private String partnerName;
@@ -50,13 +50,19 @@ public class Merchandise {
 		if(partnerName == null) {
 			h.add("Partner Name cannot be null");
 		}
-		if(partnerName.length() < 5) {
+		else if(partnerName.length() < 5) {
 			h.add("Partner Name should have atleast 5 characters");
 		}
-		if(city.length() < 3) {
+		if(city == null) {
+			h.add("City cannot be null");
+		}
+		else if(city.length() < 3) {
 			h.add("City should have atleast 3 characters");
 		}
-		if(state.length() < 3) {
+		if(state == null) {
+			h.add("State cannot be null");
+		}
+		else if(state.length() < 3) {
 			h.add("State should have atleast 3 characters");
 		}
 		String[] errors = new String[10];

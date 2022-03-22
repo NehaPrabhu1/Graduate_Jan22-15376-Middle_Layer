@@ -15,19 +15,20 @@ public class Console {
 		char choice;
 		Scanner sc = new Scanner(System.in);
 		for (;;) {
-			System.out.println("\n==========Choose one of the following options: ================");
+			System.out.println("\n========== Choose one of the following options ================");
 			System.out.println("a. Add Customer");
 			System.out.println("b. Add Supplier");
 			System.out.println("c. Display Report");
 			System.out.println("d. Search");
 			System.out.println("e. Exit");
+			System.out.println("================================================================");
 			System.out.print("Enter your choice: ");
 			choice = sc.next().charAt(0);
 			switch(choice) {
-			case 'a': System.out.println("\nFor adding customer: ");
+			case 'a': System.out.println("\n=== For adding customer ===");
 						createCustomer();
 						break;
-			case 'b': System.out.println("\nFor adding Supplier");
+			case 'b': System.out.println("\n=== For adding Supplier ===");
 						createSupplier();
 			  			break;
 			case 'c': System.out.println("\nList of Customers: ");
@@ -37,11 +38,11 @@ public class Console {
   						break;
 			case 'd': System.out.print("\nEnter the partner id of customer: ");
 						int id = sc.nextInt();
-						System.out.println(service.getCustomerById(id));
+						System.out.println("Customer: "+service.getCustomerById(id));
 						break;
-			case 'e': System.out.println("\nGoodBye");
+			case 'e': System.out.println("\n ==== GoodBye ====");
 						break;
-			default: System.out.println("\nWrong choice. Try again.");
+			default: System.out.println("\n ==== Wrong choice. Try again. ====");
 			}
 			if(choice == 'e') {
 				break;
@@ -64,7 +65,7 @@ public class Console {
 		System.out.print("Enter credit limit: ");
 		double creditLimit = sc1.nextDouble();
 		System.out.print("Enter phone number: ");
-		long phoneNo = sc1.nextLong();
+		String phoneNo = sc1.next();
 		System.out.print("Enter email:");
 		String email = sc1.next();
 		Customer c = new Customer(partnerId, partnerName, city, state, creditLimit, phoneNo, email);
@@ -74,16 +75,15 @@ public class Console {
 		for(String error:validationErrors) {
 			if(error != null) {
 				errCount++;
-				System.err.println(error);
+				System.out.println("Error: "+error);
 			}
 		}
 		if(errCount == 0) {
 			service.saveCustomerDetails(c);
-			System.out.println(service.getAllCustomers());
-			System.out.println("Customer added successfully");
+			System.out.println("=== Customer added successfully ===");
 		}
 		else {
-			System.out.println("Customer cannot be added.");
+			System.out.println("=== Customer cannot be added ===");
 		}
 	}
 	
@@ -109,16 +109,15 @@ public class Console {
 		for(String error:validationErrors) {
 			if(error != null) {
 				errCount++;
-				System.err.println(error);
+				System.out.println("Error: "+error);
 			}
 		}
 		if(errCount == 0) {
 			service.saveSupplierDetails(s);
-			System.out.println(service.getAllSuppliers());
-			System.out.println("Supplier added successfully");
+			System.out.println("=== Supplier added successfully ===");
 		}
 		else {
-			System.out.println("Supplier cannot be added.");
+			System.out.println("=== Supplier cannot be added. ===");
 		}
 	}
 
