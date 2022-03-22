@@ -37,37 +37,38 @@ public class Merchandise {
 		return partnerId;
 	}
 	
-	public String toString() {
-		return this.partnerId + " : "+this.partnerName+" : "+this.city+" : "+this.state;
-	}
-	
 	//validate
 	public String[] validate() {
-		HashSet<String> h = new HashSet<String>();
+		HashSet<String> errorSet = new HashSet<String>();
 		if(partnerId <=0) {
-			h.add("Partner Id cannot be negative");
+			errorSet.add("Partner Id cannot be negative");
 		}
 		if(partnerName == null) {
-			h.add("Partner Name cannot be null");
+			errorSet.add("Partner Name cannot be null");
 		}
 		else if(partnerName.length() < 5) {
-			h.add("Partner Name should have atleast 5 characters");
+			errorSet.add("Partner Name should have atleast 5 characters");
 		}
 		if(city == null) {
-			h.add("City cannot be null");
+			errorSet.add("City cannot be null");
 		}
 		else if(city.length() < 3) {
-			h.add("City should have atleast 3 characters");
+			errorSet.add("City should have atleast 3 characters");
 		}
 		if(state == null) {
-			h.add("State cannot be null");
+			errorSet.add("State cannot be null");
 		}
 		else if(state.length() < 3) {
-			h.add("State should have atleast 3 characters");
+			errorSet.add("State should have atleast 3 characters");
 		}
 		String[] errors = new String[10];
-		h.toArray(errors);
+		errorSet.toArray(errors);
 		return errors;
+	}
+	
+	@Override
+	public String toString() {
+		return this.partnerId + " : "+this.partnerName+" : "+this.city+" : "+this.state;
 	}
 	
 	//equals
@@ -90,7 +91,7 @@ public class Merchandise {
 		}
 	}
 	
-	//hashcode
+	//hashCode
 	@Override
 	public int hashCode() {
 		int partnerNameHashCode = partnerName== null ? 0 : partnerName.hashCode();

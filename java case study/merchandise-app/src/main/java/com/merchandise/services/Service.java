@@ -39,11 +39,11 @@ public class Service {
 				customers.add(customer);
 			}
 		}
-		Iterator<Customer> c = customers.iterator();
-		while (c.hasNext()) {
-			Customer cust = c.next();
-			if (cust.getPartnerId() == customerid) {
-				return cust;
+		Iterator<Customer> customerIterator = customers.iterator();
+		while (customerIterator.hasNext()) {
+			Customer customer = customerIterator.next();
+			if (customer.getPartnerId() == customerid) {
+				return customer;
 			}
 		}
 		return null;

@@ -24,33 +24,35 @@ public class Customer extends Merchandise {
 		return email;
 	}
 	
+	@Override
 	public String[] validate() {
 		String[] errors = super.validate();
-		Set<String> h = new HashSet<>();
-		for(String element: errors) {
-			h.add(element);
+		Set<String> errorSet = new HashSet<>();
+		for(String error: errors) {
+			errorSet.add(error);
 		}
 		if(creditLimit > 50000) {
-			h.add("Credit Limit should not be more than 50000");
+			errorSet.add("Credit Limit should not be more than 50000");
 		}
 		String phoneNoPatter = "^[1-9]{1}[0-9]{9}";
 		if(phoneNo == null) {
-			h.add("Phone No. should not be null");
+			errorSet.add("Phone No. should not be null");
 		}
 		else if(!phoneNo.matches(phoneNoPatter)) {
-			h.add("Phone number should be in proper format.");
+			errorSet.add("Phone number should be in proper format.");
 		}
 		String emailPattern = "^[a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+.[a-z]{2,6}";
 		if(email == null) {
-			h.add("Email cannot be null.");
+			errorSet.add("Email cannot be null.");
 		}
 		else if(!email.matches(emailPattern)) {
-			h.add("Provide proper email format.");
+			errorSet.add("Provide proper email format.");
 		}
-		h.toArray(errors);
+		errorSet.toArray(errors);
 		return errors;
 	}
 	
+	@Override
 	public String toString() {
 		return "[" + super.toString() + " : "+ this.creditLimit + " : "+this.email+" : "+this.phoneNo + "]";
 	}

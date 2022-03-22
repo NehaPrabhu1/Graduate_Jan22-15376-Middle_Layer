@@ -22,29 +22,32 @@ public class Supplier extends Merchandise {
 		return drivingLicenseNumber;
 	}
 	
-	public String toString() {
-		return "["+ super.toString()+" : "+this.creditBalance+" : "+this.drivingLicenseNumber+"]";
-	}
 	
+	@Override
 	public String[] validate() {
 		String[] errors = super.validate();
-		Set<String> h = new HashSet<>();
-		for(String element: errors) {
-			h.add(element);
+		Set<String> errorSet = new HashSet<>();
+		for(String error: errors) {
+			errorSet.add(error);
 		}
 		String drivingLicenseNumberPattern = "^[A-Z]{2}[0-9]{2}[0-9]{4}[0-9]{7}";
 		
 		if(creditBalance > 175000) {
-			h.add("Credit Balance should not be more than 175000");
+			errorSet.add("Credit Balance should not be more than 175000");
 		}
 		if(drivingLicenseNumber == null) {
-			h.add("Driving license number should not be null.");
+			errorSet.add("Driving license number should not be null.");
 		}
 		else if(!drivingLicenseNumber.matches(drivingLicenseNumberPattern)) {
-			h.add("Provide proper driving license number.");
+			errorSet.add("Provide proper driving license number.");
 		}
-		h.toArray(errors);
+		errorSet.toArray(errors);
 		return errors;
+	}
+	
+	@Override
+	public String toString() {
+		return "["+ super.toString()+" : "+this.creditBalance+" : "+this.drivingLicenseNumber+"]";
 	}
 
 	@Override

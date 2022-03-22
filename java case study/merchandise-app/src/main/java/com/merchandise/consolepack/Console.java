@@ -38,7 +38,13 @@ public class Console {
   						break;
 			case 'd': System.out.print("\nEnter the partner id of customer: ");
 						int id = sc.nextInt();
-						System.out.println("Customer: "+service.getCustomerById(id));
+						Customer customerById = service.getCustomerById(id);
+						if(customerById == null) {
+							System.out.println("=== Customer not found. ===");
+						}
+						else {
+							System.out.println("Customer: "+customerById);
+						}
 						break;
 			case 'e': System.out.println("\n ==== GoodBye ====");
 						break;
@@ -68,9 +74,8 @@ public class Console {
 		String phoneNo = sc1.next();
 		System.out.print("Enter email:");
 		String email = sc1.next();
-		Customer c = new Customer(partnerId, partnerName, city, state, creditLimit, phoneNo, email);
-		//call validate=> if validateArray => empty => add object else display array
-		String[] validationErrors = c.validate();
+		Customer customer = new Customer(partnerId, partnerName, city, state, creditLimit, phoneNo, email);
+		String[] validationErrors = customer.validate();
 		int errCount = 0;
 		for(String error:validationErrors) {
 			if(error != null) {
@@ -79,7 +84,7 @@ public class Console {
 			}
 		}
 		if(errCount == 0) {
-			service.saveCustomerDetails(c);
+			service.saveCustomerDetails(customer);
 			System.out.println("=== Customer added successfully ===");
 		}
 		else {
@@ -102,9 +107,8 @@ public class Console {
 		double creditBalance = sc2.nextDouble();
 		System.out.print("Enter driving License Number:");
 		String drivingLicenseNumber = sc2.next();
-		Supplier s = new Supplier(partnerId, partnerName, city, state, creditBalance, drivingLicenseNumber);
-		//call validate=> if validateArray => empty => add object else display array
-		String[] validationErrors = s.validate();
+		Supplier supplier = new Supplier(partnerId, partnerName, city, state, creditBalance, drivingLicenseNumber);
+		String[] validationErrors = supplier.validate();
 		int errCount = 0;
 		for(String error:validationErrors) {
 			if(error != null) {
@@ -113,7 +117,7 @@ public class Console {
 			}
 		}
 		if(errCount == 0) {
-			service.saveSupplierDetails(s);
+			service.saveSupplierDetails(supplier);
 			System.out.println("=== Supplier added successfully ===");
 		}
 		else {
