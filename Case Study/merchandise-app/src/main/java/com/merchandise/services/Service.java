@@ -1,6 +1,7 @@
 package com.merchandise.services;
 
 import com.merchandise.entities.Customer;
+import com.merchandise.entities.Merchandise;
 import com.merchandise.entities.Supplier;
 import java.util.*;
 
@@ -31,9 +32,12 @@ public class Service {
 		}
 		
 		//add new customer object to hashset and convert hashset to array
-		if (cust != null) {
+		if (isValid(cust)) {
 			customers.add(cust);
 			customers.toArray(customerArray);
+		}
+		else {
+			return;
 		}
 	}
 
@@ -82,9 +86,12 @@ public class Service {
 		}
 		
 		//add new supplier object to hashSet and convert hashSet to array
-		if (sup != null) {
+		if (isValid(sup)) {
 			suppliers.add(sup);
 			suppliers.toArray(supplierArray);
+		}
+		else {
+			return;
 		}
 	}
 
@@ -97,6 +104,27 @@ public class Service {
 			}
 		}
 		return allSupplier;
+	}
+	
+	private static boolean isValid(Merchandise entity) {
+		if (entity == null) {
+			return false;
+		}
+		String[] validationErrors = entity.validate();
+		int errCount = 0;
+
+		// Display errors if any
+		for (String error : validationErrors) {
+			if (error != null) {
+				errCount++;
+			}
+		}
+		if(errCount == 0) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 
 }
